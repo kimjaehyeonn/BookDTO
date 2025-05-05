@@ -15,7 +15,7 @@ public class BookMenu {
 
     public void menu() {
         while (true) {
-            System.out.println("""
+            System.out.print("""
                     *** 도서 관리 프로그램 ***
                        1. 새 도서 추가
                        2. 도서 삭제
@@ -25,6 +25,7 @@ public class BookMenu {
                        메뉴 선택 : 
                     """);
             int choice = sc.nextInt();
+            sc.nextLine();
             switch (choice) {
                 case 1:
                     bm.addBook(inputBook());
@@ -72,13 +73,14 @@ public class BookMenu {
         System.out.print("도서 제목 : ");
         String title = sc.nextLine();
 
+
         System.out.print("도서 장르(1:인문/2:자연과학/3:의료/4:기타) : ");
         int category = sc.nextInt();
+        sc.nextLine();
 
-        System.out.println("도서 저자 : ");
+        System.out.print("도서 저자 : ");
         String author = sc.nextLine();
 
-        sc.close();
         return new BookDTO(bNo, category, title, author);
 
     }
