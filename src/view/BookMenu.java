@@ -8,13 +8,14 @@ import java.util.Scanner;
 public class BookMenu {
     private Scanner sc = new Scanner(System.in);
     private BookManager bm = new BookManager();
+    boolean exit = false;
 
     public BookMenu() {
 
     }
 
     public void menu() {
-        while (true) {
+        while (!exit) {
             System.out.print("""
                     *** 도서 관리 프로그램 ***
                        1. 새 도서 추가
@@ -52,16 +53,15 @@ public class BookMenu {
                     System.out.println("정말 끝내시겠습니까? Y/N");
                     String answer = sc.nextLine();
                     if (answer.equals("Y") || answer.equals("y")) {
-                        break;
+                        exit = true;
                     } else if (answer.equals("n") || answer.equals("N")) {
                         continue;
                     }
                     break;
                 default:
                     System.out.println("잘못 입력하셨습니다.");
-                    continue;
+                    break;
             }
-            break;
         }
         sc.close();
     }
