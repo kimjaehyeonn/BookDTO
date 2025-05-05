@@ -14,29 +14,80 @@ public class BookMenu {
     }
 
     public void menu() {
-        // 메뉴 출력
-        /*
-        *** 도서 관리 프로그램 ***
-        1. 새 도서 추가
-        2. 도서 삭제
-        3. 도서 검색출력
-        4. 전체 출력
-        5. 끝내기
-        */
-        // 메뉴 번호 입력 받기
-        // 잘못된 입력 처리
-        // 각 메뉴에 따른 기능 실행
+        while (true) {
+            System.out.println("""
+                    *** 도서 관리 프로그램 ***
+                       1. 새 도서 추가
+                       2. 도서 삭제
+                       3. 도서 검색출력
+                       4. 전체 출력
+                       5. 끝내기
+                       메뉴 선택 : 
+                    """);
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    bm.addBook(inputBook());
+                    break;
+                case 2:
+                    System.out.print("삭제할 도서의 인덱스를 입력해주세요. : ");
+                    int index = sc.nextInt();
+                    try {
+                        bm.deleteBook(index);
+                    } catch (IndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 3:
+                    System.out.print("확인할 도서명을 입력해주세요. : ");
+                    String bookTitle = sc.nextLine();
+                    int index2 = bm.searchBook(bookTitle);
+                    bm.printBook(index2);
+                    break;
+                case 4:
+                    bm.displayAll();
+                    break;
+                case 5:
+                    System.out.println("정말 끝내시겠습니까? Y/N");
+                    String answer = sc.nextLine();
+                    if (answer.equals("Y") || answer.equals("y")) {
+                        break;
+                    } else if (answer.equals("n") || answer.equals("N")) {
+                        continue;
+                    }
+                    break;
+                default:
+                    System.out.println("잘못 입력하셨습니다.");
+                    continue;
+            }
+            break;
+        }
+        sc.close();
     }
 
     public BookDTO inputBook() {
-        // 도서 번호 : 입력받음
-        // 도서 제목 : 입력 받음
-        // 도서 장르 (1:인문 / 2:자연과학 / 3:의료 / 4:기타) : 입력 받음 (숫자로)
-        // 도서 저자 : 입력 받음
-        // 매개변수 생성자를 이용하여 위의 초기값을 이용한 BookDTO객체 리턴
+        System.out.print("도서 번호 : ");
+        String bNo = sc.nextLine();
+
+        System.out.print("도서 제목 : ");
+        String title = sc.nextLine();
+
+        System.out.print("도서 장르(1:인문/2:자연과학/3:의료/4:기타) : ");
+        int category = sc.nextInt();
+
+        System.out.println("도서 저자 : ");
+        String author = sc.nextLine();
+
+        sc.close();
+        return new BookDTO(bNo, category, title, author);
+
     }
 
     public String inputBookTitle() {
+        System.out.println("도서 제목 : ");
+        String title = sc.nextLine();
+        return title;
+
         // "도서 제목 : " 입력 받아 리턴
 
     }
