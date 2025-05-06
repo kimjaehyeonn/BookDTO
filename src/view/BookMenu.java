@@ -41,11 +41,7 @@ public class BookMenu {
                     }
                     break;
                 case 3:
-                    System.out.print("확인할 도서명을 입력해주세요. : ");
-                    String bookTitle = sc.nextLine();
-                    int index2 = bm.searchBook(bookTitle);
-                    bm.printBook(index2);
-                    break;
+                    bm.printBook(bm.searchBook(inputBookTitle()));
                 case 4:
                     bm.displayAll();
                     break;
