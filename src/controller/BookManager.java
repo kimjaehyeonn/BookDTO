@@ -1,11 +1,13 @@
 package controller;
 
+import lombok.NoArgsConstructor;
 import model.BookDTO;
 
 import java.util.ArrayList;
 
+@NoArgsConstructor
 public class BookManager {
-    private ArrayList<BookDTO> booklist; // 도서목록
+    private ArrayList<BookDTO> booklist = new ArrayList<>(); // 도서목록
 
     // 도서 추가
     public void addBook(BookDTO book) {
@@ -14,9 +16,7 @@ public class BookManager {
 
     // 전달 받은 index로 도서 삭제
     public void deleteBook(int index){
-
-        booklist.remove(index);
-
+        booklist.remove(index-1);
     }
 
     // 도서명이 일치하는 객체 찾아 해당 index 리턴
@@ -39,8 +39,15 @@ public class BookManager {
     // 도서 전체 리스트 출력
     // 도서가 없는 경우 적절한 메시지 출력
     public void displayAll() {
+        if ( booklist == null) {
+            System.out.println(" 등록된 도서가 존재하지 않습니다. ");
+        }
+        System.out.println("인덱스\t도서번호\t장르\t제목\t저자");
+        System.out.println("----------------------------------------");
+        int index = 1;
         for (BookDTO book : booklist) {
-            System.out.println(book.getBNo() + "\t" + book.getCategory() + "\t" + book.getTitle() + "\t"+ book.getAuthor());
+            System.out.println(index + "\t"+book.getBNo() + "\t" + book.getCategory() + "\t" + book.getTitle() + "\t"+ book.getAuthor());
+            index++;
 
         };
     }
