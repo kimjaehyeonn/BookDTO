@@ -42,6 +42,7 @@ public class BookMenu {
                     break;
                 case 3:
                     bm.printBook(bm.searchBook(inputBookTitle()));
+                    break;
                 case 4:
                     bm.displayAll();
                     break;
@@ -51,12 +52,10 @@ public class BookMenu {
                     if (answer.equals("Y") || answer.equals("y")) {
                         exit = true;
                     } else if (answer.equals("n") || answer.equals("N")) {
-                        continue;
                     }
                     break;
                 default:
                     System.out.println("잘못 입력하셨습니다.");
-                    break;
             }
         }
         sc.close();
